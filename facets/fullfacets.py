@@ -2,7 +2,7 @@ import numpy as np
 import scipy.linalg as la
 import copy 
 
-m=5
+m=6
 n=2**m -1
 A=np.eye(m)
 

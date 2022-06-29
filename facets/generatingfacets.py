@@ -2,7 +2,7 @@ import numpy as np
 import scipy.linalg as la
 import copy 
 
-m=5
+m=6
 n=2**m -1
 #c=[[1],[-1]] # for first iteration, m=2
 c=np.fromfile("facets"+str(m-1)+"-full", sep=' ')
@@ -53,6 +53,7 @@ def append(N):
 def addperm():
     global C
     for i in range(m-1):
+        print(i, " / ", m-1)
         for c in C:
             if c[0]!=c[i+1]:
                 d=copy.copy(c)
