@@ -32,4 +32,3 @@ facets/generatingfacets.py takes the normals of facets[m-1]-full and generates n
 |  6  |     347 326 352    | 
 
 Source: http://oeis.org/A034997
-6, 32, 370, 11292, 1066044, 347326352
