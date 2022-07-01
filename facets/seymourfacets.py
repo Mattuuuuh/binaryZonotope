@@ -21,6 +21,10 @@ H=np.ones((m,n))-A
 def interesect(i,j):
     return H[i,:]*H[j,:]
 
+# outputs H_i union H_j
+def union(i,j):
+    return np.maximum(H[i,:],H[j,:])
+
 # adds element k to set h
 def add(h,k):
     x=copy.copy(h)
@@ -59,12 +63,12 @@ def hasadded():
     flag=False
     # i > j loop over pairs of hyperplanes in H. 
     for i in range(lastvisited,l):
-        print(i, " / ", 625) # 625 is half of number of facets in dim 5
+        print(i, " / ", l) # ranges to number of facets
         lastvisited=l
         for j in range(i):
             h=interesect(i,j)
             # k loops over vector indices not used by h
-            for k in np.nonzero(np.ones(n)-h)[0]:
+            for k in np.nonzero(np.ones(n)-union(i,j))[0]:
                 x=add(h,k)
                 if(not isincluded(x)):
                     x=extend(x)
@@ -76,9 +80,8 @@ def hasadded():
 def main():
     global H
     while(hasadded()):
-        print("Added new sets. ", len(H)/625) # 625 is half the number of facets in dim 5
+        print("Added new sets. ", len(H))
     return 0
 
 main()
-
 print("Listed ", len(H), " sets, which means ", 2*len(H), " facets.")
