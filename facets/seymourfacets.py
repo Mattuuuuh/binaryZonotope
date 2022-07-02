@@ -64,7 +64,7 @@ def hasadded():
     # i > j loop over pairs of hyperplanes in H. 
     for i in range(lastvisited,l):
         print(i, " / ", l) # ranges to number of facets
-        lastvisited=l
+        lastvisited=i
         for j in range(i):
             h=interesect(i,j)
             # k loops over vector indices not used by h
@@ -74,13 +74,15 @@ def hasadded():
                     x=extend(x)
                     H=np.vstack((H,x))
                     flag=True
+        if flag:
+            return flag
     return flag
-                
+ 
 # main loop
 def main():
     global H
     while(hasadded()):
-        print("Added new sets. ", len(H))
+        print("Added new facets. ", len(H))
     return 0
 
 main()
