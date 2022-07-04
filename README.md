@@ -5,7 +5,7 @@ holes/enumeration.py enumerates the vectors b in the hypercube enclosing the zon
 |  Zonotope generators | Highest value of m verified |
 | -------------------- | --------------------------- |
 | Complete set         |             7               |
-| At most 3 ones       |             7               |
+| At most 3 ones       |             8               |
 
 # Generating facets of the complete binary zonotope
 
@@ -18,10 +18,14 @@ facets/generatingfacets.py takes the normals of facets[m-1]-full and generates n
 |  2  |        6         |             6              |
 |  3  |        18        |             18             |
 |  4  |        90        |             82             |
-|  5  |       1250       |            900             |
+|  5  |      1 250       |            900             |
 |  6  |      57 750      |           26 216           |
 
+facets/seymourfacets.py generates the facets from Seymour's algorithm for hyperplanes of matroids. It runs quadratically in the number of facets.
+
 # Number of vertices of the complete binary zonotope
+
+This table is for comparison with the number of facets. These values act like 2^(m²) asymptotically.
 
 |  m  | Number of vertices | 
 | --- | ------------------ |
@@ -32,3 +36,9 @@ facets/generatingfacets.py takes the normals of facets[m-1]-full and generates n
 |  6  |     347 326 352    | 
 
 Source: http://oeis.org/A034997
+
+# Plots
+
+Logarithm base 2 of the number of vertices, facets of the complete binary zonotope in dimension m, in comparison with m² and m\*mlog(m) functions. 
+
+![plot](https://github.com/Mattuuuuh/binaryZonotope/blob/main/plots/facetsandvertices.png?raw=true)
