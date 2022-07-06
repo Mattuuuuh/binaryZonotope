@@ -20,8 +20,11 @@ facets/generatingfacets.py takes the normals of facets[m-1]-full and generates n
 |  4  |        90        |             82             |
 |  5  |      1 250       |            900             |
 |  6  |      57 750      |           26 216           |
+|  7  |     >189 926     |             -              |
 
 facets/seymourfacets.py generates the facets from Seymour's algorithm for hyperplanes of matroids. It runs quadratically in the number of facets.
+
+30 hours of running time on Seymour's algorithm yielded the 189 152 facets as lower bound.
 
 # Number of vertices of the complete binary zonotope
 
@@ -34,6 +37,7 @@ This table is for comparison with the number of facets. These values act like 2^
 |  4  |         370        |
 |  5  |      1 066 044     |
 |  6  |     347 326 352    | 
+|  7  |   419 172 756 930  |
 
 Source: http://oeis.org/A034997
 

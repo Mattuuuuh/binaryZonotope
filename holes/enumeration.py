@@ -3,7 +3,7 @@ import copy
 import gurobipy as gp
 from gurobipy import GRB
 
-m=8
+m=9
 
 # builds matrix with at most 3 ones vectors
 A=np.eye(m)
