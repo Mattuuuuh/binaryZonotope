@@ -2,7 +2,7 @@ import numpy as np
 from numpy.linalg import matrix_rank
 import copy 
 
-m=7
+m=3
 A=np.eye(m)
 
 # builds complete matrix
@@ -62,7 +62,7 @@ def hasadded():
     l=len(H)
     flag=False
     # i > j loop over pairs of hyperplanes in H. 
-    for i in range(lastvisited+1,l+1):
+    for i in range(lastvisited+1,l):
         print(i, " / ", l) # ranges to number of facets
         lastvisited=i
         for j in range(i):
