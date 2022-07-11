@@ -26,9 +26,11 @@ for i in range(len(c)):
     flag=not np.isin(i,R)
     j=i+1
     while(flag):
+        print(j, "  /  ", len(c))
         if np.all(c[i,:]==-c[j,:]):
             R.append(j)
             flag=False
+        j=j+1
         
 c=np.delete(c,R,axis=0)
 h=len(c)
@@ -106,5 +108,5 @@ def main():
     return 0
 
 main()
-print("List had", h/2, "elements, ie.", h, "facets")
+print("List had", h, "elements, ie.", 2*h, "facets")
 print("Listed ", len(H), " sets, which means ", 2*len(H), " facets.")
