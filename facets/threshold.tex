@@ -1,0 +1,260 @@
+\documentclass[11pt]{amsart} 
+\usepackage{amssymb,amsmath,latexsym,enumerate,graphicx,bbm,mathptmx,microtype,cite}
+\allowdisplaybreaks
+
+\hoffset=0in 
+\voffset=0in
+\oddsidemargin=0in
+\evensidemargin=0in
+\topmargin=0.3in 
+\headsep=0.15in 
+\headheight=8pt
+\textwidth=6.5in
+\textheight=8.5in
+
+\usepackage{float}
+
+\usepackage{amsthm, pict2e, hyperref, mathtools }
+
+\usepackage{xcolor}
+\newlength\mylen
+\usepackage{array} % for "\newcolumntype" macro
+\newcolumntype{C}{>>{\hfil$}p{\mylen}<{$\hfil}}
+%\makeatletter
+\usepackage{tikz}
+\usetikzlibrary{graphs,graphs.standard}
+\usepackage{tikz-cd}
+\usepackage{caption}
+\usepackage{ulem}
+\usepackage{color}
+\usepackage{scrlayer-scrpage}
+\usepackage{siunitx}
+\usepackage{lastpage}
+\usepackage{comment}
+\usetikzlibrary{arrows,intersections,patterns}
+\usetikzlibrary{decorations.markings}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+
+\newtheorem{theorem}{Theorem} % [section] \numberwithin{equation}{section}
+\newtheorem{cor}[theorem]{Corollary}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{lem}[theorem]{Lemma}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem*{exam}{Example}
+\newenvironment{example}{\begin{exam}\rm}{\end{exam}}
+\newtheorem*{rem}{Remarks}
+\newenvironment{remark}{\begin{rem}\rm}{\end{rem}}
+
+\newcommand\lcm{\operatorname{lcm}} 
+\newcommand\vol{\operatorname{vol}} 
+\newcommand\conv{\operatorname{conv}} 
+\newcommand\vspan{\operatorname{span}} 
+\newcommand\const{\operatorname{const}} 
+\newcommand\cone{\operatorname{cone}} 
+\newcommand\link{\operatorname{link}} 
+\newcommand\height{\operatorname{height}} 
+\newcommand\ehr{\operatorname{ehr}} 
+\newcommand\Ehr{\operatorname{Ehr}} 
+\newcommand\SL{\operatorname{SL}} 
+
+\newcommand\ZZ{\mathbb{Z}}
+\newcommand\QQ{\mathbb{Q}}
+\newcommand\RR{\mathbb{R}}
+\newcommand\CC{\mathbb{C}}
+
+\newcommand\cC{\mathcal{C}}
+\newcommand\cF{\mathcal{F}}
+\newcommand\cG{\mathcal{G}}
+\newcommand\cH{\mathcal{H}}
+\newcommand\cK{\mathcal{K}}
+\newcommand\cL{\mathcal{L}}
+\newcommand\cM{\mathcal{M}}
+\newcommand\cP{\mathcal{P}}
+\newcommand\cR{\mathcal{R}}
+\newcommand\cS{\mathcal{S}}
+\newcommand\cT{\mathcal{T}}
+
+
+
+\newcommand\bA{\mathbf{A}}
+\newcommand\bB{\mathbf{B}}
+\newcommand\ba{\mathbf{a}}
+\newcommand\bb{\mathbf{b}}
+\newcommand\bc{\mathbf{c}}
+\newcommand\be{\mathbf{e}}
+\newcommand\bm{\mathbf{m}}
+\newcommand\bU{\mathbf{U}}
+\newcommand\bu{\mathbf{u}}
+\newcommand\bv{\mathbf{v}}
+\newcommand\bw{\mathbf{w}}
+\newcommand\bx{\mathbf{x}}
+\newcommand\by{\mathbf{y}}
+\newcommand\bzero{\mathbf{0}}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{definition}
+
+\theoremstyle{question}
+\newtheorem{question}{Question}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+
+\usetikzlibrary{arrows.meta}
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{caption}
+
+\newcommand{\COMMENT}[2][.2\linewidth]{%
+  \leavevmode\hfill\makebox[#1][l]{//~#2}}
+\usepackage[ruled, linesnumbered, noend]{algorithm2e}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% math operators
+
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\indeg}{indeg}
+\DeclareMathOperator{\outdeg}{outdeg}
+
+\makeatletter % to repeat theorem numbers
+\newtheorem*{rep@theorem}{\rep@title}\newcommand{\newreptheorem}[2]{%
+\newenvironment{rep#1}[1]{%
+\def\rep@title{\bf #2 \ref{##1}}%
+\begin{rep@theorem}}%
+{\end{rep@theorem}}}
+\makeatother
+\newreptheorem{theorem}
+
+\renewcommand\emptyset{\varnothing}
+\renewcommand\th{^{\text{th}}}
+
+\newcommand\fl[1]{\left\lfloor {#1} \right\rfloor} 
+\newcommand\fr[1]{\left\{ {#1} \right\}} 
+\newcommand\commentout[1]{}
+\newcommand\Def[1]{{\bf #1}}
+\newcommand\set[2]{{#1} : \, {#2}}
+
+\newcommand\WW{\mathcal{W}}
+
+\title{The number of hyperplanes spanned by linear independent zero-one vectors}
+
+
+
+\begin{document}
+
+\maketitle
+
+Let $c \in \mathbb{R}^n$ and $T \in \mathbb{R}$. 
+A \Def{Boolean threshold function} $f \colon \{0,1 \}^n \rightarrow \{0,1 \}$ is a function defined by
+
+\begin{equation*}
+  f(x)=\begin{cases}
+    1, & \text{if $c^Tx \geq T$}\\
+    0, & \text{if $c^Tx < T$}.
+  \end{cases}
+\end{equation*}
+
+The hyperplane $\{ x \in \mathbb{R}^n : c^Tx = T \} $ divides the cube $[0,1]^n$ into two (possibly empty) polyhedra $S_1 \coloneqq \{ x \in [0,1]^n : c^Tx \geq T \}$, and $S_2 \coloneqq \{ x \in [0,1]^n : c^Tx < T \} $. 
+Thus, $f$ applied to any vertex of $S_1$ is $1$ and applied to any vertex of $S_2$ is $0$. 
+We say that $\{ x \in \mathbb{R}^n : c^Tx = T \} $ is the \Def{hyperplane induced by $f$}.
+
+Consider the LP 
+\begin{align*}
+    \text{for all  } x \in S_1: c^Tx \geq 0 \text{ and} \\
+    \text{for all  } x \in S_2: c^Tx \leq -1 \\
+\end{align*}
+
+is a basis solution $v_1,...,v_i,v_{i+1},...,v_n$ where $v_1,...,v_i \in S_1 $ and $v_{i+1},..., v_n \in S_2$ are linearly independent and, as basis solution they satisfy $c^Tv_j = 0$ for all $j \in \{1,...,i\}$ and $c^Tv_j = -1$ for all $j \in \{i+1,...,n\}$.
+
+Consider the "lifted" hyperplane $\{ (x^T, x_{n+1})^T \in \mathbb{R}^{n+1} : c^Tx - Tx_{n+1} \geq 0 \} $ in $\mathbb{R}^{n+1}$ defining the polyhedra $S_1^{new} \subseteq \mathbb{R}^{n+1}$ and $S_2^{new} \subseteq \mathbb{R}^{n+1}$ as we defined $S_1$ and $S_2$ before. It follows that $S_1 = \{ x \in \mathbb{R}^n : (x^T,1)^T \in S_1^{new} \}  $ and $S_2 = \{ x \in \mathbb{R}^n : (x^T,0)^T \in S_2^{new} \}  $. 
+
+Consider the lifted basis solution 
+\[ \left( \begin{array}{cc}
+v_1\\
+0 
+\end{array} \right),\dots,
+%
+\left( \begin{array}{cc}
+v_i\\
+0 
+\end{array} \right),\dots,
+\left( \begin{array}{cc}
+v_{i+1}\\
+1
+\end{array} \right),\dots,
+\left( \begin{array}{cc}
+v_n\\
+1
+\end{array} \right)
+\]
+
+This solution defines as well a hyperplane through $0$ in $\mathbb{R}^{n+1}$ as a threshold function.  Thus, the number of hyperplanes spanned by $(n-1)$ linear independent $0/1$ vectors is bigger or equal the number of Boolean threshold functions and thus also the number of facets of the White Whale $\WW(m)$. A lower bound on the number of Boolean threshold functions is given by the following Proposition. 
+
+\begin{prop}
+The number of Boolean threshold functions is bigger or equal $2^{\frac{1}{2}n^2}$. 
+\end{prop}
+
+The proof follows by the following lemmas.
+
+\begin{lem} \label{lem1}
+Let $f,g \colon \{0,1 \}^n \rightarrow \{0,1 \}$ and $f',g' \colon \{0,1 \}^n \rightarrow \{0,1 \}$ be Boolean threshold functions. Define two Boolean threshold functions $h,h' \colon \{0,1 \}^{n+1} \rightarrow \{0,1 \}$ as 
+\begin{align*}
+    h(x,x_{n+1}) = f(x)x_{n+1} + g(x)(1-x_{n+1}) \\
+    h'(x,x_{n+1}) = f'(x)x_{n+1} + g'(x)(1-x_{n+1}).
+\end{align*}
+Then if $f\neq f' $ or $g \neq g'$ it follows that $h \neq h'$. 
+\end{lem}
+
+\begin{lem} \label{lem2}
+Let $c \in \mathbb{R}^n$ and $T_f,T_g \in \mathbb{R}$ be given. 
+Let $f,g \colon \{0,1 \}^n \rightarrow \{0,1 \}$ be Boolean threshold functions defined as
+\begin{equation*}
+  f(x)=\begin{cases}
+    1, & \text{if $c^Tx \geq T_f$}\\
+    0, & \text{if $c^Tx < T_f$}
+  \end{cases}
+\end{equation*} and 
+
+\begin{equation*}
+  g(x)=\begin{cases}
+    1, & \text{if $c^Tx \geq T_g$}\\
+    0, & \text{if $c^Tx < T_g$}.
+  \end{cases}
+\end{equation*}
+Then $h$, as defined, in Lemma \ref{lem1} is a threshold function.
+
+\end{lem}
+
+\begin{proof}
+If $x_{n+1} = 1$, then $h(x,1) = 1$ if and only if $c^Tx \geq T_fx_{n+1}$. If $x_{n+1} = 0$, then $h(x,0) = 1$ if and only if $c^Tx \geq T_gx_{n+1}$. Thus, $h(x,x_{n+1})=1$ if and only if $c^Tx+(T_g-T_f)x_{n+1} \geq T_g$. 
+\end{proof}
+
+Now let $f \colon \{0,1 \}^n \rightarrow \{0,1 \}$ be a given Boolean threshold function with $c \in \mathbb{R}^n$ and we assume w.l.o.g. that $c^Tx \neq c^Ty$ for all $x,y \in \{0,1 \}^n$ with $x \neq y$. 
+Define a series of Boolean threshold functions $g_i \colon \{0,1 \}^n \rightarrow \{0,1 \}$ such that the hyperplane induced by $g_i$ cuts off $i \in \{0,..., 2^n \}$ many integer points of $[0,1]^n$. So, there are $2^n+1$ different $g_i$. By Lemma \ref{lem2}, the functions $h^{f,i}$ defined by $h^{f,i}(x,x_{n+1}) = f(x)x_{n+1} + g_i(x)(1-x_{n+1})$ are Boolean threshold functions. By Lemma \ref{lem1}, $h^{f,i} \neq h^{f',i'}$ if and only if $f \neq f'$ or $i \neq i'$. Thus, for the number $T(n+1)$ of Boolean threshold functions we have $T(n+1) \leq (2^n+1)T(n) \leq... \leq 2^n \cdot 2^{n-1} \cdots 2^0 = 2^{\frac{1}{2}n^2}$, by the geometric series.
+
+Thus, we know that both the number of facets and the number of vertices of the White Whale $\WW(m)$ are in $2^{\Omega(n^2)}$. 
+
+\begin{question}
+So, the question arises how the rest of the face lattice behaves, i.e., if all numbers of faces are in $2^{\Omega(n^2)}$ or if there is a different behaviour for the other faces of $\WW(m)$ (if the face lattice looks more "convex" or "concave")
+\end{question}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
